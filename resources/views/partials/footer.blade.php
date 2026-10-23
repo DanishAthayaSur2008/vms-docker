@@ -11,12 +11,6 @@
                 <span class="site-footer-tagline">Buku Tamu Digital Data Center</span>
             </p>
 
-            <p class="site-footer-credit">
-                Dikembangkan oleh
-                <span class="site-footer-name">Sechk Muhamad Nabil Mustaqim</span>
-                <span class="site-footer-nowrap">&amp; <span class="site-footer-name">Rendi</span></span>
-            </p>
-
         </div>
 
     </div>
