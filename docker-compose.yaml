@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      network: host   # build pakai jaringan host, bypass MTU bridge saat apt-get/composer
     container_name: vms_app
     restart: always
     env_file:

@@ -28,6 +28,9 @@ if ! grep -q "^APP_KEY=base64:" .env; then
     php artisan key:generate --force
 fi
 
+# Package discovery (dipindah dari fase build karena butuh koneksi DB)
+php artisan package:discover --ansi
+
 # Jalankan Database Migration
 echo "=== [4/5] Menjalankan Database Migrations ==="
 php artisan migrate --force

@@ -52,7 +52,7 @@ COPY --from=frontend-builder /var/www/visitor-management-system/public/build ./p
 
 # Optimasi Composer Autoloader
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer dump-autoload --optimize --no-dev
+    && composer dump-autoload --optimize --no-dev --no-scripts
 
 # Setup Executable Script Entrypoint
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
