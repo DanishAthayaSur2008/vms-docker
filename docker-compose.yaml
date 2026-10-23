@@ -1,11 +1,10 @@
-version: '3.8'
-
 services:
   # Service Container Aplikasi Laravel (PHP-FPM)
   app:
     build:
       context: .
       dockerfile: Dockerfile
+      network: host   # build pakai jaringan host, bypass MTU bridge saat apt-get/composer
     container_name: vms_app
     restart: always
     env_file:
@@ -58,3 +57,5 @@ volumes:
 networks:
   vms_network:
     driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1400   # sesuaikan dengan hasil tes ping
