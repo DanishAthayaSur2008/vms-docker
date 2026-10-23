@@ -27,6 +27,8 @@ FROM php:8.3-fpm
 
 WORKDIR /var/www/visitor-management-system
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Install System Dependencies & Extension PHP Wajib
 RUN apt-get update && apt-get install -y \
     git \
@@ -41,6 +43,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip intl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Ambil binary Composer dari image resmi (tanpa download dari getcomposer.org)
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
 # Copy Source Code Aplikasi
 COPY . .
 
@@ -50,16 +55,26 @@ COPY --from=composer-builder /var/www/visitor-management-system/vendor ./vendor
 # Copy Hasil Compile Assets dari Frontend Builder
 COPY --from=frontend-builder /var/www/visitor-management-system/public/build ./public/build
 
-# Optimasi Composer Autoloader
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer dump-autoload --optimize --no-dev --no-scripts
+# Optimasi Composer Autoloader (tanpa scripts, karena butuh DB)
+RUN composer dump-autoload --optimize --no-dev --no-scripts
 
-# Setup Executable Script Entrypoint
+# Simpan salinan public di luar volume (volume app_public tidak ikut update saat rebuild)
+RUN cp -a /var/www/visitor-management-system/public /var/www/public-dist
+
+# Setup Executable Script Entrypoint (sekaligus buang CRLF kalau diedit di Windows)
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh \
+    && chmod +x /usr/local/bin/entrypoint.sh
 
-# Atur Izin Akses Folder Storage & Cache
-RUN chown -R www-data:www-data /var/www/visitor-management-system/storage /var/www/visitor-management-system/bootstrap/cache
+# Buat folder storage & cache lalu atur izin akses
+RUN mkdir -p /var/www/visitor-management-system/storage/framework/views \
+             /var/www/visitor-management-system/storage/framework/cache/data \
+             /var/www/visitor-management-system/storage/framework/sessions \
+             /var/www/visitor-management-system/storage/logs \
+             /var/www/visitor-management-system/storage/app/public \
+             /var/www/visitor-management-system/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/visitor-management-system/storage /var/www/visitor-management-system/bootstrap/cache \
+    && chmod -R 775 /var/www/visitor-management-system/storage /var/www/visitor-management-system/bootstrap/cache
 
 EXPOSE 9000
 

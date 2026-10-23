@@ -22,18 +22,22 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Generate APP_KEY jika belum ada
-if ! grep -q "^APP_KEY=base64:" .env; then
+# Generate APP_KEY jika belum ada (di environment maupun di file .env)
+if [ -z "$APP_KEY" ] && ! grep -q "^APP_KEY=base64:" .env; then
     echo "=== [3/6] Generating Application Key ==="
     php artisan key:generate --force
 fi
 
 # Memastikan seluruh direktori internal framework dibuat sebelum artisan command dipanggil
 echo "=== [4/6] Memastikan Folder Storage & Framework Terbentuk ==="
+# Sinkronkan isi public dari image (volume app_public tidak otomatis update saat rebuild)
+cp -a /var/www/public-dist/. public/
+
 mkdir -p storage/framework/views \
          storage/framework/cache/data \
          storage/framework/sessions \
          storage/logs \
+         storage/app/public \
          bootstrap/cache
 
 # Set izin awal folder storage & cache
@@ -43,6 +47,7 @@ chmod -R 775 storage bootstrap/cache
 # Package discovery & Database Migration
 echo "=== [5/6] Package Discovery & Running Database Migrations ==="
 php artisan package:discover --ansi
+php artisan storage:link --force
 php artisan migrate --force
 
 # Cache Konfigurasi, Route, dan View untuk Production
