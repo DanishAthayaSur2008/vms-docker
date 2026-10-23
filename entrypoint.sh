@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "=== [1/5] Menunggu Koneksi Database MySQL (db:3306) ==="
+echo "=== [1/6] Menunggu Koneksi Database MySQL (db:3306) ==="
 until php -r "
   try {
     \$pdo = new PDO('mysql:host='.getenv('DB_HOST').';port='.getenv('DB_PORT').';dbname='.getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
@@ -18,32 +18,42 @@ echo "Database MySQL Berhasil Terhubung!"
 
 # Salin .env jika belum ada
 if [ ! -f .env ]; then
-    echo "=== [2/5] Membuat file .env dari .env.example ==="
+    echo "=== [2/6] Membuat file .env dari .env.example ==="
     cp .env.example .env
 fi
 
 # Generate APP_KEY jika belum ada
 if ! grep -q "^APP_KEY=base64:" .env; then
-    echo "=== [3/5] Generating Application Key ==="
+    echo "=== [3/6] Generating Application Key ==="
     php artisan key:generate --force
 fi
 
-# Package discovery (dipindah dari fase build karena butuh koneksi DB)
-php artisan package:discover --ansi
+# Memastikan seluruh direktori internal framework dibuat sebelum artisan command dipanggil
+echo "=== [4/6] Memastikan Folder Storage & Framework Terbentuk ==="
+mkdir -p storage/framework/views \
+         storage/framework/cache/data \
+         storage/framework/sessions \
+         storage/logs \
+         bootstrap/cache
 
-# Jalankan Database Migration
-echo "=== [4/5] Menjalankan Database Migrations ==="
+# Set izin awal folder storage & cache
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+
+# Package discovery & Database Migration
+echo "=== [5/6] Package Discovery & Running Database Migrations ==="
+php artisan package:discover --ansi
 php artisan migrate --force
 
-# Cache Konfigurasi & Route untuk Production
-echo "=== [5/5] Membuat Optimasi Cache Laravel ==="
+# Cache Konfigurasi, Route, dan View untuk Production
+echo "=== [6/6] Membuat Optimasi Cache Laravel ==="
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# Pastikan Izin Akses Direktori
-chown -R www-data:www-data /var/www/visitor-management-system/storage /var/www/visitor-management-system/bootstrap/cache
-chmod -R 775 /var/www/visitor-management-system/storage /var/www/visitor-management-system/bootstrap/cache
+# Re-apply Izin Akses Direktori ke user www-data untuk file hasil caching/log baru
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
 
 echo "=== Container App Siap Digunakan! Memulai PHP-FPM... ==="
 exec "$@"
