@@ -22,14 +22,8 @@ if [ ! -f .env ]; then
     cp .env.example .env
 fi
 
-# Generate APP_KEY jika belum ada (di environment maupun di file .env)
-if [ -z "$APP_KEY" ] && ! grep -q "^APP_KEY=base64:" .env; then
-    echo "=== [3/6] Generating Application Key ==="
-    php artisan key:generate --force
-fi
-
 # Memastikan seluruh direktori internal framework dibuat sebelum artisan command dipanggil
-echo "=== [4/6] Memastikan Folder Storage & Framework Terbentuk ==="
+echo "=== [3/6] Memastikan Folder Storage & Framework Terbentuk ==="
 # Sinkronkan isi public dari image (volume app_public tidak otomatis update saat rebuild)
 cp -a /var/www/public-dist/. public/
 
@@ -44,9 +38,22 @@ mkdir -p storage/framework/views \
 chown -R www-data:www-data storage bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 
-# Package discovery & Database Migration
-echo "=== [5/6] Package Discovery & Running Database Migrations ==="
+# Buang cache package/service lama (bawaan dev, mereferensikan Pail dkk) lalu buat ulang tanpa dev
+echo "=== [4/6] Reset Cache Package & Package Discovery ==="
+rm -f bootstrap/cache/packages.php \
+      bootstrap/cache/services.php \
+      bootstrap/cache/config.php \
+      bootstrap/cache/routes-*.php
 php artisan package:discover --ansi
+
+# Generate APP_KEY jika belum ada (di environment maupun di file .env)
+if [ -z "$APP_KEY" ] && ! grep -q "^APP_KEY=base64:" .env; then
+    echo "=== APP_KEY kosong, generating Application Key ==="
+    php artisan key:generate --force
+fi
+
+# Storage link & Database Migration
+echo "=== [5/6] Storage Link & Running Database Migrations ==="
 php artisan storage:link --force
 php artisan migrate --force
 
