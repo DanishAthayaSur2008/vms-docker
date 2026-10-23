@@ -52,10 +52,18 @@ if [ -z "$APP_KEY" ] && ! grep -q "^APP_KEY=base64:" .env; then
     php artisan key:generate --force
 fi
 
-# Storage link & Database Migration
-echo "=== [5/6] Storage Link & Running Database Migrations ==="
+# Storage link, Database Migration & Seeding (sekali saja)
+echo "=== [5/6] Storage Link, Migrations & Seeding ==="
 php artisan storage:link --force
 php artisan migrate --force
+
+if [ ! -f storage/.seeded ]; then
+    echo "Menjalankan DatabaseSeeder (pertama kali)..."
+    php artisan db:seed --class=DatabaseSeeder --force
+    touch storage/.seeded
+else
+    echo "Seeding dilewati (sudah pernah dijalankan)."
+fi
 
 # Cache Konfigurasi, Route, dan View untuk Production
 echo "=== [6/6] Membuat Optimasi Cache Laravel ==="
