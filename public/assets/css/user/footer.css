@@ -1,0 +1,109 @@
+/*
+==========================================
+FOOTER USER - Sengked.com
+Footer halaman visitor (beranda, check in, check out,
+sukses). Warna mengikuti variabel tema di global.css
+sehingga otomatis ikut Dark / Light Mode. Nilai cadangan
+(fallback) dipakai di halaman yang tidak memuat global.css.
+==========================================
+*/
+
+.site-footer{
+
+    width:100%;
+
+    padding:22px 0 24px;
+
+    background:var(--bg-surface, #FFFFFF);
+
+    border-top:1px solid var(--border-color, #E5E7EB);
+
+    font-family:'Poppins', sans-serif;
+
+    text-align:center;
+
+    animation:ui-fade-in var(--ui-slow, .36s) ease backwards;
+
+}
+
+.site-footer-inner{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:4px;
+
+}
+
+.site-footer p{
+
+    margin:0;
+
+    line-height:1.6;
+
+}
+
+.site-footer-copy{
+
+    font-size:13px;
+
+    color:var(--text-muted, #6B7280);
+
+}
+
+.site-footer-copy strong{
+
+    font-weight:600;
+
+    color:var(--text-main, #1F2937);
+
+}
+
+.site-footer-sep{
+
+    margin:0 6px;
+
+    color:var(--secondary, #F97316);
+
+}
+
+.site-footer-credit{
+
+    font-size:12.5px;
+
+    color:var(--text-muted, #6B7280);
+
+}
+
+.site-footer-nowrap{
+
+    white-space:nowrap;
+
+}
+
+.site-footer-name{
+
+    font-weight:600;
+
+    color:var(--secondary, #F97316);
+
+}
+
+@media (max-width:480px){
+
+    .site-footer{ padding:18px 0 20px; }
+
+    .site-footer-copy,
+    .site-footer-credit{ font-size:12px; }
+
+    /* judul & tagline dibuat dua baris rapi di layar kecil */
+    .site-footer-sep{ display:none; }
+
+    .site-footer-tagline{ display:block; }
+
+    .site-footer-inner{ padding:0 12px; }
+
+}

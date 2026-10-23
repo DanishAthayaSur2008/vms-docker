@@ -1,0 +1,284 @@
+/*
+==========================================
+DC Visitor
+Visitor Page
+Orange Theme
+Version : 3.1
+(layout, sidebar, topbar, scrollbar sudah dipindah ke global.css)
+==========================================
+*/
+
+
+/* ======================================
+CARD
+====================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:22px;
+
+    background:#FFFFFF;
+
+    box-shadow:0 15px 35px rgba(249,115,22,.10);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.card-header{
+
+    background:#FFF7ED;
+
+    border:none;
+
+    border-bottom:1px solid #FFE4C7;
+
+    border-radius:22px 22px 0 0 !important;
+
+    font-weight:600;
+
+}
+
+
+/* ======================================
+FILTER
+====================================== */
+
+.form-control,
+
+.form-select{
+
+    height:50px;
+
+    border-radius:14px;
+
+    border:1px solid #FFD7AA;
+
+}
+
+.form-control:focus,
+
+.form-select:focus{
+
+    border-color:#F97316;
+
+    box-shadow:0 0 0 .2rem rgba(249,115,22,.18);
+
+}
+
+
+/* ======================================
+TABLE
+====================================== */
+
+.table{
+
+    margin:0;
+
+}
+
+.table thead{
+
+    background:#FFF7ED;
+
+}
+
+.table th{
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    color:#374151;
+
+    border-bottom:2px solid #FED7AA;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+    color:#4B5563;
+
+}
+
+.table tbody tr{
+
+    transition:.25s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#FFF8F1;
+
+}
+
+
+/* ======================================
+BADGE
+====================================== */
+
+.badge{
+
+    padding:8px 15px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+}
+
+
+/* ======================================
+BUTTON
+====================================== */
+
+.btn{
+
+    border-radius:12px;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-primary{
+
+    background:#F97316;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#EA580C;
+
+}
+
+.btn-warning{
+
+    background:#FACC15;
+
+    color:#1F2937;
+
+    border:none;
+
+}
+
+.btn-warning:hover{
+
+    background:#EAB308;
+
+}
+
+.btn-success{
+
+    background:#22C55E;
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    background:#16A34A;
+
+}
+
+.btn-danger{
+
+    background:#EF4444;
+
+    border:none;
+
+}
+
+.btn-danger:hover{
+
+    background:#DC2626;
+
+}
+
+.btn-sm{
+
+    border-radius:10px;
+
+}
+
+
+/* ======================================
+PAGINATION
+====================================== */
+
+.pagination .page-link{
+
+    border:none;
+
+    border-radius:12px;
+
+    margin:0 4px;
+
+    color:#F97316;
+
+    background:#FFFFFF;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.06);
+
+}
+
+.pagination .page-link:hover{
+
+    background:#FED7AA;
+
+    color:#EA580C;
+
+}
+
+.pagination .active .page-link{
+
+    background:#F97316;
+
+    border:none;
+
+    color:#FFFFFF;
+
+}
+
+
+/* ======================================
+RESPONSIVE (spesifik halaman ini)
+====================================== */
+
+@media(max-width:768px){
+
+    .topbar h3{
+
+        font-size:26px;
+
+    }
+
+}
+
+/* ===== DARK MODE ===== */
+
+body.dark-mode .table th{
+
+    color:var(--text-main) !important;
+
+}

@@ -1,0 +1,730 @@
+/*
+==========================================
+DC Visitor
+Global Style
+==========================================
+*/
+
+:root{
+
+    --primary:#F59E0B;
+    --secondary:#F97316;
+    --white:#FFFFFF;
+    --light:#FFF7ED;
+    --gray:#6B7280;
+    --text:#1F2937;
+    --border:#E5E7EB;
+    --shadow:0 15px 35px rgba(249,115,22,.12);
+
+    /* Theme-aware surface variables (light mode default) */
+    --bg-body:#FFF8F1;
+    --bg-surface:#FFFFFF;
+    --bg-surface-2:#FFF7ED;
+    --text-main:#1F2937;
+    --text-muted:#6B7280;
+    --border-color:#E5E7EB;
+    --navbar-bg:#FFFFFF;
+
+}
+
+/* ======================================
+DARK MODE OVERRIDES
+====================================== */
+
+body.dark-mode{
+
+    --bg-body:#111827;
+    --bg-surface:#1F2937;
+    --bg-surface-2:#1F2937;
+    --text-main:#F3F4F6;
+    --text-muted:#9CA3AF;
+    --border-color:#374151;
+    --navbar-bg:#1F2937;
+
+}
+
+/* Reset */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    font-family: "Poppins", sans-serif;
+
+    background: var(--bg-body);
+
+    color: var(--text-main);
+
+    overflow-x: hidden;
+
+    transition: background .3s ease, color .3s ease;
+
+}
+
+a {
+
+    text-decoration: none;
+
+}
+
+ul {
+
+    list-style: none;
+
+}
+
+img {
+
+    max-width: 100%;
+
+    display: block;
+
+}
+
+button {
+
+    cursor: pointer;
+
+}
+
+section {
+
+    padding: 100px 0;
+
+}
+
+
+/* ======================================
+LAYOUT (dipakai semua halaman admin)
+====================================== */
+
+.dashboard-wrapper{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:var(--bg-body);
+
+}
+
+.main-content{
+
+    flex:1;
+
+    min-width:0;
+
+    margin-left:260px;
+
+    padding:35px;
+
+}
+
+
+/* ======================================
+SIDEBAR (satu sumber untuk semua halaman)
+====================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:linear-gradient(180deg,#F97316,#EA580C);
+
+    color:#fff;
+
+    padding:25px;
+
+    overflow-y:auto;
+
+    box-shadow:6px 0 20px rgba(249,115,22,.15);
+
+}
+
+.sidebar-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    justify-content:center;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:45px;
+
+    color:#fff;
+
+}
+
+.brand-logo-img{
+
+    width:40px;
+
+    height:40px;
+
+    object-fit:contain;
+
+    display:block;
+
+    flex-shrink:0;
+
+}
+
+.sidebar-logo .brand-logo-img{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:11px;
+
+    box-shadow:
+        0 0 0 3px rgba(255,255,255,.28),
+        0 6px 14px rgba(0,0,0,.20);
+
+}
+
+.sidebar-logo i{
+
+    font-size:34px;
+
+    color:#FACC15;
+
+}
+
+.sidebar-menu{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.sidebar-menu li{
+
+    margin-bottom:12px;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:#FFE7D6;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+.sidebar-menu a:hover{
+
+    background:rgba(255,255,255,.18);
+
+    color:#fff;
+
+    transform:translateX(5px);
+
+}
+
+.sidebar-menu a.active{
+
+    background:#FACC15;
+
+    color:#7C2D12;
+
+    font-weight:600;
+
+}
+
+
+/* ======================================
+TOPBAR (dipakai semua halaman admin)
+====================================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.topbar h3{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:var(--text-main);
+
+    margin-bottom:5px;
+
+}
+
+.topbar p{
+
+    color:var(--text-muted);
+
+    margin:0;
+
+}
+
+.admin-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:var(--bg-surface);
+
+    padding:12px 18px;
+
+    border-radius:16px;
+
+    box-shadow:0 8px 25px rgba(249,115,22,.10);
+
+}
+
+.admin-profile i{
+
+    font-size:30px;
+
+    color:#F97316;
+
+}
+
+
+/* ======================================
+DARK MODE TOGGLE BUTTON
+====================================== */
+
+.theme-toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    background:var(--bg-surface);
+
+    color:var(--secondary);
+
+    border:1px solid var(--border-color);
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.theme-toggle:hover{
+
+    transform:scale(1.08);
+
+    background:var(--secondary);
+
+    color:#fff;
+
+}
+
+
+/* ======================================
+GENERIC SURFACE HELPERS (dark-mode aware)
+====================================== */
+
+body.dark-mode .card,
+body.dark-mode .table,
+body.dark-mode .modal-content,
+body.dark-mode .navbar{
+
+    background-color:var(--bg-surface) !important;
+
+    color:var(--text-main) !important;
+
+    border-color:var(--border-color) !important;
+
+}
+
+body.dark-mode .table thead.table-light{
+
+    background-color:#374151 !important;
+
+    color:var(--text-main) !important;
+
+}
+
+body.dark-mode .table-hover tbody tr:hover{
+
+    background-color:rgba(255,255,255,.04) !important;
+
+    color:var(--text-main) !important;
+
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select{
+
+    background-color:#111827 !important;
+
+    color:var(--text-main) !important;
+
+    border-color:var(--border-color) !important;
+
+}
+
+body.dark-mode .form-control::placeholder{
+
+    color:var(--text-muted) !important;
+
+}
+
+body.dark-mode .text-muted{
+
+    color:var(--text-muted) !important;
+
+}
+
+body.dark-mode .bg-white{
+
+    background-color:var(--bg-surface) !important;
+
+}
+
+body.dark-mode .card-header.bg-white{
+
+    background-color:var(--bg-surface) !important;
+
+    border-color:var(--border-color) !important;
+
+}
+
+body.dark-mode .btn-close{
+
+    filter:invert(1);
+
+}
+
+
+/* ======================================
+SCROLLBAR (dipakai semua halaman admin)
+====================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#F97316;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#FFF7ED;
+
+}
+
+
+/* ======================================
+RESPONSIVE (layout dasar, semua halaman admin)
+====================================== */
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:220px;
+
+    }
+
+    .main-content{
+
+        margin-left:220px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-wrapper{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+    .main-content{
+
+        margin-left:0;
+
+        padding:20px;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+}
+
+/* ======================================
+ADMIN DARK MODE - KOMPONEN TAMBAHAN
+(card-header peach, dashboard-wrapper, pagination)
+====================================== */
+
+body.dark-mode .card-header{
+
+    background:#3A2412 !important;
+
+    border-color:#4B2A12 !important;
+
+    color:#FDBA74 !important;
+
+}
+
+body.dark-mode .dashboard-wrapper{
+
+    background:var(--bg-body) !important;
+
+}
+
+body.dark-mode .page-link{
+
+    background-color:var(--bg-surface) !important;
+
+    color:#FDBA74 !important;
+
+    border-color:var(--border-color) !important;
+
+}
+
+body.dark-mode .page-link:hover{
+
+    background-color:#374151 !important;
+
+    color:#FDBA74 !important;
+
+}
+
+body.dark-mode .page-item.active .page-link,
+body.dark-mode .pagination .active .page-link{
+
+    background-color:#F97316 !important;
+
+    color:#fff !important;
+
+}
+
+
+/* ======================================
+ADMIN DARK MODE - TABEL, FORM, MODAL, ALERT
+(Bootstrap 5.3 mewarnai sel tabel lewat variabel --bs-table-*,
+jadi harus di-override lewat variabel, bukan background tabel)
+====================================== */
+
+[data-bs-theme="dark"]{
+    --bs-body-bg:#111827;
+    --bs-body-color:#F3F4F6;
+    --bs-border-color:#374151;
+    --bs-secondary-color:#9CA3AF;
+    --bs-tertiary-bg:#1F2937;
+}
+
+body.dark-mode .table,
+body.dark-mode .table-light{
+    --bs-table-color:var(--text-main);
+    --bs-table-bg:transparent;
+    --bs-table-border-color:var(--border-color);
+    --bs-table-hover-color:var(--text-main);
+    --bs-table-hover-bg:rgba(255,255,255,.05);
+    --bs-table-striped-bg:rgba(255,255,255,.03);
+    --bs-table-striped-color:var(--text-main);
+}
+
+body.dark-mode .table-light{
+    --bs-table-bg:#374151;
+}
+
+body.dark-mode .table thead,
+body.dark-mode .table thead.table-light{
+    background:#374151 !important;
+}
+
+body.dark-mode .table tbody tr,
+body.dark-mode .table-hover tbody tr:hover{
+    background:transparent !important;
+}
+
+body.dark-mode .table-hover tbody tr:hover > *{
+    --bs-table-bg-state:rgba(255,255,255,.05);
+}
+
+body.dark-mode .table > :not(caption) > * > *{
+    color:var(--text-main);
+    border-color:var(--border-color);
+}
+
+body.dark-mode .table td{
+    color:var(--text-main) !important;
+    border-color:var(--border-color) !important;
+}
+
+body.dark-mode .table-responsive{
+    background:var(--bg-surface);
+    border-radius:0 0 20px 20px;
+}
+
+body.dark-mode .card-body,
+body.dark-mode .modal-header,
+body.dark-mode .modal-body,
+body.dark-mode .modal-footer{
+    color:var(--text-main);
+    border-color:var(--border-color) !important;
+}
+
+body.dark-mode .card-body h6,
+body.dark-mode .card small,
+body.dark-mode .form-label{
+    color:var(--text-muted);
+}
+
+body.dark-mode .form-control:disabled,
+body.dark-mode .form-control[readonly]{
+    background-color:#1F2937 !important;
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus{
+    border-color:#F97316 !important;
+    box-shadow:0 0 0 .2rem rgba(249,115,22,.25) !important;
+}
+
+body.dark-mode .bg-secondary.badge{
+    background:#4B2A12 !important;
+    color:#FDBA74 !important;
+}
+
+body.dark-mode .alert-success{
+    background:#14352A;
+    border-color:#1F5C46;
+    color:#A7F3D0;
+}
+
+body.dark-mode .alert-danger{
+    background:#3B1D1D;
+    border-color:#6B2A2A;
+    color:#FECACA;
+}
+
+body.dark-mode .btn-secondary{
+    background:#374151;
+    border-color:#374151;
+    color:#F3F4F6;
+}
+
+body.dark-mode .btn-outline-primary,
+body.dark-mode .btn-outline-success,
+body.dark-mode .btn-outline-danger{
+    background:transparent;
+}
+
+body.dark-mode .btn-outline-danger:hover{
+    background:#DC3545;
+    color:#fff;
+}
+
+body.dark-mode .btn-outline-success:hover{
+    background:#22C55E;
+    color:#fff;
+}
+
+body.dark-mode .pagination .page-link{
+    box-shadow:none;
+}
+
+body.dark-mode .page-item.disabled .page-link{
+    background-color:var(--bg-surface) !important;
+    color:var(--text-muted) !important;
+    opacity:.6;
+}
+
+html[data-bs-theme="dark"] ::-webkit-scrollbar-track{
+    background:#111827;
+}

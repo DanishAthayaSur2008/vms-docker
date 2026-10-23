@@ -1,0 +1,147 @@
+/* =========================================
+DEVICE PREVIEW FRAME (SHARED)
+Dipakai di semua halaman user (Home, Check In,
+Check Out) supaya mode tampilan HP/Tablet/Desktop
+konsisten pas pindah halaman.
+========================================= */
+
+#deviceFrame {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    transition: width .35s ease, height .35s ease, border-radius .35s ease;
+}
+
+body.device-mobile,
+body.device-tablet {
+    background: #111827;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Mode Handphone */
+body.device-mobile #deviceFrame {
+    width: 390px;
+    height: 844px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    border-radius: 36px;
+    border: 10px solid #1F2937;
+    box-shadow: 0 25px 60px rgba(0,0,0,.6);
+    transform: translateZ(0);
+}
+
+/* Mode Tablet */
+body.device-tablet #deviceFrame {
+    width: 820px;
+    height: 1000px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    border-radius: 24px;
+    border: 10px solid #1F2937;
+    box-shadow: 0 25px 60px rgba(0,0,0,.6);
+    transform: translateZ(0);
+}
+
+/* Mode Desktop (default, normal seperti browser asli) */
+body.device-desktop #deviceFrame {
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* =========================
+TOOLBAR (device switch + theme toggle)
+posisinya nempel ke frame, bukan ke
+viewport asli, biar gak lepas pas di-preview
+========================= */
+
+.page-toolbar,
+#deviceFrame .navbar.fixed-top {
+    position: fixed;
+    z-index: 1050;
+}
+
+body.device-mobile #deviceFrame .page-toolbar,
+body.device-tablet #deviceFrame .page-toolbar,
+body.device-mobile #deviceFrame .navbar.fixed-top,
+body.device-tablet #deviceFrame .navbar.fixed-top {
+    position: absolute;
+}
+
+.page-toolbar {
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+DEVICE SWITCH BUTTONS
+========================= */
+
+.device-switch {
+    display: flex;
+    background: #F3F4F6;
+    border-radius: 50px;
+    padding: 4px;
+    gap: 2px;
+}
+
+.device-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50px;
+    background: transparent;
+    color: #6B7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.device-btn:hover {
+    color: #F97316;
+}
+
+.device-btn.active {
+    background: #F97316;
+    color: #fff;
+}
+
+body.device-mobile .device-switch,
+body.device-tablet .device-switch {
+    transform: scale(.9);
+}
+
+/* =========================
+STACK KOLOM BOOTSTRAP
+(Bootstrap col-* dari CDN based on lebar
+browser asli, bukan lebar frame - jadi kita
+paksa manual biar tetap kelihatan mobile/tablet)
+========================= */
+
+body.device-mobile [class*="col-"] {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+body.device-tablet [class*="col-lg-"] {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+body.device-mobile .container,
+body.device-tablet .container {
+    max-width: 100% !important;
+}

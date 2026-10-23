@@ -1,0 +1,131 @@
+/*
+=========================================
+CHECK IN - SELECT PAGE (Register / Login)
+=========================================
+*/
+
+.checkin-select-row{
+
+    margin-top:10px;
+
+}
+
+.checkin-option-card{
+
+    background:var(--bg-surface, #fff);
+
+    border-radius:20px;
+
+    padding:36px 30px;
+
+    height:100%;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    transition:transform .2s ease, box-shadow .2s ease;
+
+}
+
+.checkin-option-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 16px 40px rgba(0,0,0,.12);
+
+}
+
+.checkin-option-icon{
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--light);
+
+    color:var(--primary);
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+.checkin-option-icon-alt{
+
+    background:rgba(249,115,22,.10);
+
+    color:var(--secondary);
+
+}
+
+.checkin-option-card h3{
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+    color:var(--text-main);
+
+}
+
+.checkin-option-desc{
+
+    color:var(--text-muted);
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    margin-bottom:24px;
+
+    flex-grow:1;
+
+}
+
+.checkin-option-card .btn{
+
+    height:52px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+}
+
+/*
+==========================================
+RESPONSIVE
+==========================================
+*/
+
+@media (max-width:768px){
+
+    .checkin-option-card{
+
+        padding:28px 22px;
+
+    }
+
+}

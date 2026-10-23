@@ -1,0 +1,456 @@
+/*
+==========================================
+DC Visitor
+Detail Visitor
+Orange Theme
+Version : 3.0
+==========================================
+*/
+
+/* ======================================
+LAYOUT
+====================================== */
+
+.dashboard-wrapper{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:#FFF8F1;
+
+}
+
+.main-content{
+
+    flex:1;
+
+    margin-left:260px;
+
+    padding:35px;
+
+}
+
+
+/* ======================================
+SIDEBAR
+====================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:linear-gradient(180deg,#F97316,#EA580C);
+
+    color:#fff;
+
+    padding:25px;
+
+    overflow-y:auto;
+
+    box-shadow:6px 0 20px rgba(249,115,22,.15);
+
+}
+
+.sidebar-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:45px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#fff;
+
+}
+
+.sidebar-logo i{
+
+    color:#FACC15;
+
+    font-size:34px;
+
+}
+
+.sidebar-menu{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.sidebar-menu li{
+
+    margin-bottom:12px;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:#FFE7D6;
+
+    transition:.3s;
+
+    font-weight:500;
+
+}
+
+.sidebar-menu a:hover{
+
+    background:rgba(255,255,255,.18);
+
+    color:#fff;
+
+    transform:translateX(5px);
+
+}
+
+.sidebar-menu a.active{
+
+    background:#FACC15;
+
+    color:#7C2D12;
+
+    font-weight:600;
+
+}
+
+
+/* ======================================
+TOPBAR
+====================================== */
+
+.topbar{
+
+    margin-bottom:35px;
+
+}
+
+.topbar h3{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#1F2937;
+
+    margin-bottom:6px;
+
+}
+
+.topbar p{
+
+    color:#6B7280;
+
+    margin:0;
+
+}
+
+
+/* ======================================
+CARD
+====================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:#fff;
+
+    box-shadow:0 12px 28px rgba(249,115,22,.08);
+
+}
+
+.card-header{
+
+    background:#FFF3E6;
+
+    border:none;
+
+    color:#EA580C;
+
+    font-weight:600;
+
+    padding:18px 24px;
+
+}
+
+
+/* ======================================
+PHOTO
+====================================== */
+
+.visitor-photo{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:6px solid #FACC15;
+
+    box-shadow:0 10px 25px rgba(249,115,22,.15);
+
+}
+
+
+/* ======================================
+BADGE
+====================================== */
+
+.badge{
+
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    font-size:.9rem;
+
+}
+
+.bg-success{
+
+    background:#F97316 !important;
+
+}
+
+.bg-primary{
+
+    background:#FACC15 !important;
+
+    color:#7C2D12 !important;
+
+}
+
+.bg-secondary{
+
+    background:#FED7AA !important;
+
+    color:#9A3412 !important;
+
+}
+
+
+/* ======================================
+DETAIL INFORMATION
+====================================== */
+
+.card-body{
+
+    padding:30px;
+
+}
+
+.card-body strong{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#EA580C;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.card-body p{
+
+    margin-bottom:22px;
+
+    color:#374151;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+
+/* ======================================
+BUTTON
+====================================== */
+
+.btn-primary{
+
+    background:#F97316;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#EA580C;
+
+}
+
+.btn-outline-primary{
+
+    border:2px solid #F97316;
+
+    color:#F97316;
+
+}
+
+.btn-outline-primary:hover{
+
+    background:#F97316;
+
+    color:#fff;
+
+}
+
+
+/* ======================================
+FORM
+====================================== */
+
+.form-control:focus,
+
+.form-select:focus{
+
+    border-color:#F97316;
+
+    box-shadow:0 0 0 .2rem rgba(249,115,22,.18);
+
+}
+
+
+/* ======================================
+SCROLLBAR
+====================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#F97316;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#FFF7ED;
+
+}
+
+
+/* ======================================
+RESPONSIVE
+====================================== */
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:220px;
+
+    }
+
+    .main-content{
+
+        margin-left:220px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-wrapper{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+    .main-content{
+
+        margin-left:0;
+
+        padding:20px;
+
+    }
+
+    .visitor-photo{
+
+        width:140px;
+
+        height:140px;
+
+    }
+
+}
+
+/* ===== DARK MODE ===== */
+
+body.dark-mode .topbar h3{
+
+    color:var(--text-main) !important;
+
+}
+
+body.dark-mode .topbar p{
+
+    color:var(--text-muted) !important;
+
+}
+
+body.dark-mode .card-body p{
+
+    color:var(--text-main) !important;
+
+}

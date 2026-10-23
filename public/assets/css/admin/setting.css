@@ -1,0 +1,253 @@
+/*
+==========================================
+DC Visitor
+Admin Setting
+Orange Theme
+Version : 3.1
+(layout, sidebar, topbar, responsive dasar sudah dipindah ke global.css)
+==========================================
+*/
+
+
+/* ======================================
+CARD
+====================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:22px;
+
+    background:#FFFFFF;
+
+    box-shadow:0 15px 35px rgba(249,115,22,.10);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.card-header{
+
+    background:#FFF7ED;
+
+    border:none;
+
+    border-bottom:1px solid #FFE4C7;
+
+    border-radius:22px 22px 0 0 !important;
+
+    font-weight:600;
+
+    color:#1F2937;
+
+}
+
+.card-body{
+
+    padding:32px;
+
+}
+
+
+/* ======================================
+FORM
+====================================== */
+
+.form-label{
+
+    font-weight:600;
+
+    color:#374151;
+
+    margin-bottom:8px;
+
+}
+
+.form-control{
+
+    height:50px;
+
+    border-radius:14px;
+
+    border:1px solid #FFD7AA;
+
+    transition:.3s;
+
+}
+
+.form-control:focus{
+
+    border-color:#F97316;
+
+    box-shadow:0 0 0 .2rem rgba(249,115,22,.18);
+
+}
+
+.form-select{
+
+    height:50px;
+
+    border-radius:14px;
+
+    border:1px solid #FFD7AA;
+
+}
+
+.form-select:focus{
+
+    border-color:#F97316;
+
+    box-shadow:0 0 0 .2rem rgba(249,115,22,.18);
+
+}
+
+.form-check-input{
+
+    cursor:pointer;
+
+    border:1px solid #FDBA74;
+
+}
+
+.form-check-input:checked{
+
+    background:#F97316;
+
+    border-color:#F97316;
+
+}
+
+.form-check-input:focus{
+
+    box-shadow:0 0 0 .2rem rgba(249,115,22,.20);
+
+}
+
+.form-check-label{
+
+    cursor:pointer;
+
+    color:#374151;
+
+}
+
+
+/* ======================================
+BUTTON
+====================================== */
+
+.btn{
+
+    border-radius:14px;
+
+    padding:10px 24px;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-primary{
+
+    background:#F97316;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#EA580C;
+
+}
+
+.btn-warning{
+
+    background:#FACC15;
+
+    border:none;
+
+    color:#1F2937;
+
+}
+
+.btn-warning:hover{
+
+    background:#EAB308;
+
+}
+
+.btn-success{
+
+    background:#22C55E;
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    background:#16A34A;
+
+}
+
+.btn-danger{
+
+    background:#EF4444;
+
+    border:none;
+
+}
+
+.btn-danger:hover{
+
+    background:#DC2626;
+
+}
+
+
+/* ======================================
+RESPONSIVE (spesifik halaman ini)
+====================================== */
+
+@media(max-width:768px){
+
+    .topbar h3{
+
+        font-size:26px;
+
+    }
+
+}
+
+/* ===== DARK MODE ===== */
+
+body.dark-mode .card-header{
+
+    border-color:#4B2A12 !important;
+
+}
+
+body.dark-mode .form-label{
+
+    color:var(--text-main) !important;
+
+}
+
+body.dark-mode .form-check-label{
+
+    color:var(--text-main) !important;
+
+}

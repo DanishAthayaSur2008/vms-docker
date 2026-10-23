@@ -1,0 +1,454 @@
+/* =========================
+LOCK SCROLL - Home hanya 1 halaman
+(khusus halaman Home, Check In & Check Out
+tetap bisa discroll normal karena isinya form panjang)
+========================= */
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+html.device-mobile,
+html.device-tablet,
+body.device-mobile,
+body.device-tablet {
+    height: auto;
+    overflow-y: auto;
+}
+
+/* Mode Desktop di Home tetap dikunci 100vh + hidden */
+body.device-desktop {
+    height: 100%;
+    overflow: hidden;
+}
+
+body.device-desktop #deviceFrame {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Supaya hero mengisi tinggi frame (bukan selalu 100vh asli browser) */
+#deviceFrame .hero {
+    height: 100%;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar {
+    height: 80px;
+    background: #fff;
+    border-bottom: 1px solid #F3F4F6;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1;
+}
+
+.navbar-brand .brand-logo-img {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(135deg, var(--bg-body), var(--bg-surface-2));
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 50px;
+    background: #FEF3C7;
+    color: #B45309;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* =========================
+BUTTON
+========================= */
+
+.btn {
+    transition: .3s;
+    border-radius: 12px;
+}
+
+/* =========================
+RESPONSIVE (real device asli)
+========================= */
+
+@media(max-width: 992px) {
+    .hero {
+        text-align: center;
+    }
+    .hero-title {
+        font-size: 46px;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+@media(max-width: 768px) {
+    .hero-title {
+        font-size: 36px;
+    }
+    .hero-description {
+        font-size: 16px;
+    }
+}
+
+/* =========================
+DEVICE PREVIEW - HERO OVERRIDE
+(supaya tampilan mobile/tablet beneran
+kelihatan beda walau browser aslinya lebar)
+========================= */
+
+body.device-tablet .hero {
+    text-align: center;
+}
+
+body.device-tablet .hero-title {
+    font-size: 42px;
+}
+
+body.device-tablet .hero-buttons {
+    justify-content: center;
+}
+
+body.device-mobile .hero {
+    text-align: center;
+}
+
+body.device-mobile .hero .container {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+body.device-mobile .hero-badge {
+    font-size: 13px;
+    padding: 6px 14px;
+}
+
+body.device-mobile .hero-title {
+    font-size: 28px;
+}
+
+body.device-mobile .hero-description {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+body.device-mobile .hero-buttons {
+    flex-direction: column;
+    justify-content: center;
+}
+
+body.device-mobile .hero-buttons .btn {
+    width: 100%;
+}
+
+body.device-mobile .navbar-brand {
+    font-size: 1.1rem;
+}
+
+/* =========================
+THEME ORANGE + YELLOW
+========================= */
+
+:root {
+    --primary: #F97316;
+    --secondary: #FACC15;
+    --white: #ffffff;
+    --text: #1F2937;
+    --gray: #6B7280;
+    --border: #FFE7C2;
+    --shadow: 0 12px 30px rgba(249,115,22,.15);
+}
+
+.btn-primary {
+    background: #F97316 !important;
+    border-color: #F97316 !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    background: #EA580C !important;
+    border-color: #EA580C !important;
+}
+
+.btn-outline-primary {
+    color: #F97316 !important;
+    border: 2px solid #F97316 !important;
+}
+
+.btn-outline-primary:hover {
+    background: #F97316 !important;
+    color: #fff !important;
+}
+
+a { color: #F97316; }
+a:hover { color: #EA580C; }
+
+.text-primary { color: #F97316 !important; }
+.bg-primary { background: #F97316 !important; }
+.border-primary { border-color: #F97316 !important; }
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #F97316;
+    box-shadow: 0 0 0 .25rem rgba(249,115,22,.25);
+}
+
+.badge.bg-primary { background: #F97316 !important; }
+
+.page-item.active .page-link {
+    background: #F97316;
+    border-color: #F97316;
+}
+
+.page-link { color: #F97316; }
+.page-link:hover { color: #EA580C; }
+
+.hero-badge {
+    background: #FFF3D4;
+    color: #D97706;
+}
+
+::selection {
+    background: #F97316;
+    color: #fff;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-thumb { background: #F97316; border-radius: 20px; }
+::-webkit-scrollbar-track { background: #FFF7ED; }
+
+/* =========================
+HERO - FOTO LATAR (gedung Data Center)
+Foto: public/assets/img/bg-asnet.jpg (potret)
+Karena fotonya potret, penempatannya:
+- Desktop/laptop : panel foto di sisi KANAN (tajam, ukuran asli),
+                   memudar halus ke sisi kiri tempat teks berada
+- Tablet/HP      : panel foto di bagian ATAS, memudar ke bawah,
+                   teks berada di bawah papan nama gedung
+Lapisan: .hero::before (foto) -> .hero-overlay (pencahayaan) -> konten
+========================= */
+
+.hero {
+    isolation: isolate;
+    background: linear-gradient(135deg, #0B0F19 0%, #111827 55%, #1a1410 100%);
+}
+
+/* --- default (tablet / HP): foto di atas --- */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 62%;
+    z-index: -2;
+    background: url("../../img/bg-asnet.jpg") center top / cover no-repeat;
+    filter: brightness(.95) contrast(1.06) saturate(1.05);
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+    transform-origin: 50% 30%;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(70% 45% at 0% 100%, rgba(249,115,22,.20), transparent 70%),
+        linear-gradient(180deg, rgba(11,15,25,.45) 0%, rgba(11,15,25,.10) 30%, rgba(11,15,25,.55) 62%, rgba(11,15,25,.88) 100%);
+}
+
+/* HP: teks diturunkan sedikit supaya tidak menutup papan nama */
+@media (max-width: 992px) {
+    .hero {
+        align-items: flex-end;
+        padding-bottom: 56px;
+    }
+}
+
+body.device-mobile .hero,
+body.device-tablet .hero {
+    align-items: flex-end;
+    padding-bottom: 56px;
+}
+
+/* --- desktop / laptop: foto di kanan --- */
+@media (min-width: 993px) {
+
+    body:not(.device-mobile):not(.device-tablet) .hero::before {
+        top: 0;
+        bottom: 0;
+        left: auto;
+        right: 0;
+        width: 50%;
+        height: auto;
+        background-position: center 24%;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.6) 9%, #000 17%);
+                mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.6) 9%, #000 17%);
+        transform-origin: 70% 40%;
+    }
+
+    body:not(.device-mobile):not(.device-tablet) .hero-overlay {
+        background:
+            radial-gradient(55% 70% at 6% 100%, rgba(249,115,22,.20), transparent 70%),
+            linear-gradient(90deg, rgba(11,15,25,.55) 0%, rgba(11,15,25,.12) 55%, rgba(11,15,25,.30) 100%),
+            linear-gradient(180deg, rgba(11,15,25,.50) 0%, rgba(11,15,25,0) 26%, rgba(11,15,25,0) 72%, rgba(11,15,25,.55) 100%);
+    }
+}
+
+/* Teks hero selalu terang karena berada di atas area gelap */
+.hero .hero-title {
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0,0,0,.35);
+}
+
+body .hero .hero-description {
+    color: rgba(255,255,255,.86) !important;
+}
+
+.hero .hero-description strong {
+    color: #fff;
+}
+
+.hero .btn-outline-primary {
+    background: rgba(11,15,25,.35);
+}
+
+.hero .btn-outline-primary:hover {
+    background: #F97316;
+}
+
+/* =========================
+HOME DESKTOP: footer ikut terlihat
+Home dikunci 1 layar (tanpa scroll), jadi frame dibuat kolom:
+hero mengisi sisa tinggi, footer menempel di bawah.
+========================= */
+
+body.device-desktop #deviceFrame {
+    display: flex;
+    flex-direction: column;
+}
+
+body.device-desktop #deviceFrame .hero {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+}
+
+body.device-desktop #deviceFrame .site-footer {
+    flex: 0 0 auto;
+}
+
+
+/* =========================
+HERO - TEMA TERANG (Light Mode)
+Tema gelap memakai gradasi hitam-navy yang menyatu dengan foto.
+Tema terang memakai gradasi krem-putih hangat (sama dengan warna
+halaman: --bg-body) yang memudar ke foto, jadi tidak ada blok
+gelap yang "menabrak" navbar & footer putih.
+========================= */
+
+body:not(.dark-mode) .hero {
+    background: linear-gradient(135deg, var(--bg-body, #FFF8F1) 0%, #FFFFFF 55%, #FFEBD6 100%);
+}
+
+body:not(.dark-mode) .hero::before {
+    filter: brightness(1) contrast(1.03) saturate(1.05);
+}
+
+/* HP / tablet: foto di atas memudar ke krem di bawah */
+body:not(.dark-mode) .hero-overlay {
+    background:
+        radial-gradient(70% 45% at 0% 100%, rgba(249,115,22,.14), transparent 70%),
+        linear-gradient(180deg, rgba(255,248,241,.0) 0%, rgba(255,248,241,0) 30%, rgba(255,248,241,.75) 58%, var(--bg-body, #FFF8F1) 78%);
+}
+
+/* Desktop / laptop: sisi kiri (teks) krem, memudar ke foto di kanan */
+@media (min-width: 993px) {
+
+    body:not(.dark-mode):not(.device-mobile):not(.device-tablet) .hero-overlay {
+        background:
+            radial-gradient(55% 70% at 4% 100%, rgba(249,115,22,.14), transparent 70%),
+            linear-gradient(90deg, rgba(255,248,241,.0) 0%, rgba(255,248,241,0) 60%, rgba(255,248,241,0) 100%),
+            linear-gradient(180deg, rgba(255,248,241,.55) 0%, rgba(255,248,241,0) 22%, rgba(255,248,241,0) 80%, rgba(255,248,241,.45) 100%);
+    }
+
+    /* transisi krem -> foto sedikit lebih lebar supaya terasa lembut */
+    body:not(.dark-mode):not(.device-mobile):not(.device-tablet) .hero::before {
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 10%, rgba(0,0,0,.85) 20%, #000 28%);
+                mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 10%, rgba(0,0,0,.85) 20%, #000 28%);
+    }
+}
+
+body:not(.dark-mode) .hero .hero-title {
+    color: var(--text-main, #1F2937);
+    text-shadow: none;
+}
+
+body:not(.dark-mode) .hero .hero-description {
+    color: #4B5563 !important;
+}
+
+body:not(.dark-mode) .hero .hero-description strong {
+    color: #111827;
+}
+
+body:not(.dark-mode) .hero .btn-outline-primary {
+    background: rgba(255,255,255,.75);
+}
+
+body:not(.dark-mode) .hero .btn-outline-primary:hover {
+    background: #F97316;
+}
