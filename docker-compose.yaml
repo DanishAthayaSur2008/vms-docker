@@ -16,6 +16,8 @@ services:
       MYSQL_PASSWORD: "${DB_PASSWORD:?DB_PASSWORD belum diisi di .env}"
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - visitor_net
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
       interval: 10s
@@ -41,6 +43,8 @@ services:
         condition: service_healthy
     volumes:
       - app_storage:/var/www/html/storage
+    networks:
+      - visitor_net
     healthcheck:
       test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/9000'"]
       interval: 10s
@@ -53,9 +57,6 @@ services:
       context: .
       dockerfile: Dockerfile
       target: web
-      args:
-        PUBLIC_IP: "${PUBLIC_IP:-202.73.24.73}"
-        PRIVATE_IP: "${PRIVATE_IP:-10.22.0.9}"
     image: visitor-web:latest
     container_name: visitor-web
     restart: unless-stopped
@@ -63,17 +64,22 @@ services:
       app:
         condition: service_healthy
     ports:
-      - "80:80"
-      - "443:443"
+      - "8081:80"
     volumes:
       - app_storage:/var/www/html/storage:ro
-      - ./certbot/conf:/etc/letsencrypt:ro
+    networks:
+      - visitor_net
     healthcheck:
       test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/up || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 5
       start_period: 15s
+
+networks:
+  visitor_net:
+    name: visitor_net
+    driver: bridge
 
 volumes:
   db_data:

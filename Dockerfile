@@ -1,7 +1,8 @@
 # =====================================================================
 # Visitor Management System - Laravel 12 + Vite (Tailwind 4)
 #   target "app" : PHP 8.4-FPM (backend + hasil build frontend)
-#   target "web" : Nginx (file statis + proxy ke php-fpm, HTTP & HTTPS)
+#   target "web" : Nginx HTTP (file statis + FastCGI ke php-fpm)
+#   SSL/TLS di-terminate oleh Nginx VM 1 (SERV-REV-PROX), bukan di sini
 # =====================================================================
 
 # ---------- base: PHP-FPM + ekstensi ----------
@@ -83,17 +84,8 @@ EXPOSE 9000
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["php-fpm"]
 
-# ---------- web: nginx ----------
+# ---------- web: nginx (HTTP internal, di belakang reverse proxy) ----------
 FROM nginx:stable-alpine AS web
-ARG PUBLIC_IP=202.73.24.73
-ARG PRIVATE_IP=10.22.0.9
-RUN apk add --no-cache openssl \
- && mkdir -p /etc/nginx/certs \
- && openssl req -x509 -nodes -newkey rsa:2048 -sha256 -days 3650 \
-      -keyout /etc/nginx/certs/selfsigned.key \
-      -out /etc/nginx/certs/selfsigned.crt \
-      -subj "/CN=${PUBLIC_IP}" \
-      -addext "subjectAltName=IP:${PUBLIC_IP},IP:${PRIVATE_IP}"
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=app /var/www/html/public /var/www/html/public
-EXPOSE 80 443
+EXPOSE 80
