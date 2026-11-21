@@ -452,3 +452,15 @@ body:not(.dark-mode) .hero .btn-outline-primary {
 body:not(.dark-mode) .hero .btn-outline-primary:hover {
     background: #F97316;
 }
+
+/* FIX JARAK HERO DARI HEADER PADA ZOOM 100% */
+#deviceFrame .hero {
+    box-sizing: border-box;
+    padding-top: 80px;
+}
+
+/* Tampilan mobile dan tablet */
+body.device-mobile #deviceFrame .hero,
+body.device-tablet #deviceFrame .hero {
+    padding-top: 80px;
+}
